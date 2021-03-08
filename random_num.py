@@ -31,9 +31,11 @@ item_list = list(map(lambda x: putZeros(x), item_range))
 
 def modeSelect(mode, count):
     global isRand
+    global indexVal
     if mode == 'r':
         isRand = True
-        return random.choice(item_list)
+        indexVal = int(random.choice(item_list))
+        return indexVal
     
     elif mode == 'n':
 
@@ -72,7 +74,6 @@ t = Timer()
 
 
 def runProgram():
-
     game_score = 0
     count = 0
     item_count = int(item_list[0]) + 1
@@ -91,8 +92,12 @@ def runProgram():
                 print(f'         {modeSelect(choiceVar, count)}')
                 time.sleep(2)
                 if (not isRand):
-                    print(f'Person: {personTest[count+item_count]}')
-                    print(f'Action: {dataTest[count+item_count]}')
+                    print(f'Person: {dataMain[count+item_count]}')
+                    print(f'Action: {dataMain[count+item_count]}')
+                    print('--------------------')
+                else:
+                    print(f'Person: {dataMain.iloc[indexVal+1,3]}')
+                    print(f'Action: {dataMain.iloc[indexVal+1, 4]}')
                     print('--------------------')
                 count += 1
 
