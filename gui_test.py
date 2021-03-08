@@ -1,9 +1,9 @@
-from tkinter import *
+# from tkinter import *
 
-window = Tk()
+# window = Tk()
 
-myLabel = Label(window, text="Hello World!")
+# myLabel = Label(window, text="Hello World!")
 
-myLabel.pack()
+# myLabel.pack()
 
-window.mainloop()
+# window.mainloop()
