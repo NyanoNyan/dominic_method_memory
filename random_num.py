@@ -17,6 +17,7 @@ personTest = dataMain.iloc[1:,3]
 lower = int(input("Please enter the starting number: "))
 ending = int(input("Please enter the ending number + 1: "))
 item_range = list(range(lower,ending))
+isRand = False
 
 def putZeros(value):
 
@@ -29,8 +30,9 @@ item_list = list(map(lambda x: putZeros(x), item_range))
 # print(item_list)
 
 def modeSelect(mode, count):
-
+    global isRand
     if mode == 'r':
+        isRand = True
         return random.choice(item_list)
     
     elif mode == 'n':
@@ -88,9 +90,10 @@ def runProgram():
 
                 print(f'         {modeSelect(choiceVar, count)}')
                 time.sleep(2)
-                print(f'Person: {personTest[count+item_count]}')
-                print(f'Action: {dataTest[count+item_count]}')
-                print('--------------------')
+                if (not isRand):
+                    print(f'Person: {personTest[count+item_count]}')
+                    print(f'Action: {dataTest[count+item_count]}')
+                    print('--------------------')
                 count += 1
 
 
