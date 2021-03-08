@@ -37,6 +37,10 @@ def modeSelect(mode, count):
 
             count += 1
             return item_list[count-1]
+# Implement score tally
+def scoreTally(game_score, count, answer):
+    if (answer=="y"):
+        return ((game_score + 1) / count)
 
 class TimerError(Exception):
     """A custom exception used to report errors in use of Timer class"""
@@ -67,6 +71,7 @@ t = Timer()
 
 def runProgram():
 
+    game_score = 0
     count = 0
     item_count = int(item_list[0]) + 1
     isEnd = False
