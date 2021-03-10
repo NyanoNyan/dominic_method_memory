@@ -38,9 +38,9 @@ def modeSelect(mode, count):
         return indexVal
     
     elif mode == 'n':
-
-            count += 1
-            return item_list[count-1]
+        isRand = False
+        count += 1
+        return item_list[count-1]
 # Implement score tally
 def scoreTally(game_score, count, answer):
     if (answer=="y"):
@@ -92,10 +92,12 @@ def runProgram():
                 print(f'         {modeSelect(choiceVar, count)}')
                 time.sleep(2)
                 if (not isRand):
-                    print(f'Person: {dataMain[count+item_count]}')
-                    print(f'Action: {dataMain[count+item_count]}')
+                    ## When it's False, normal
+                    print(f'Person: {dataMain.iloc[count+item_count,3]}')
+                    print(f'Action: {dataMain.iloc[count+item_count,4]}')
                     print('--------------------')
                 else:
+                    ## When it's True, random
                     print(f'Person: {dataMain.iloc[indexVal+1,3]}')
                     print(f'Action: {dataMain.iloc[indexVal+1, 4]}')
                     print('--------------------')
