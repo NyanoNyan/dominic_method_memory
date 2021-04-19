@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
+from tkinter import messagebox
 import pandas as pd
 
 
@@ -8,12 +9,15 @@ class WindowSetUp:
         self.window = window
         self.window.title("Dominic Method Memory Tester")
         self.window.rowconfigure([0, 1, 2, 3, 4], minsize= 100, weight=1)
-        self.window.columnconfigure([0, 1, 2, 3], minsize= 100, weight=1)
+        self.window.columnconfigure([0, 1, 2, 3, 4], minsize= 100, weight=1)
 
         self.frame = tk.Frame(self.window)
+        self.lower_range = tk.Entry(self.window, justify="center")
+        self.ending_range = tk.Entry(self.window)
+
         self.frame.grid(row=0, column=0, sticky="nsew")
 
-        self.data_values = tk.Text(self.window)
+        self.data_values = pd.DataFrame()
         # self.txt_edit = tk.Text(self.window)
         # self.txt_test = tk.Text(self.window)
         # self.txt_test.grid(row=0, column=2, sticky="nsew")
@@ -27,34 +31,47 @@ class WindowSetUp:
             return
 
         df = pd.read_csv(filepath)
-        # print(df)
-        # data = pd.read_csv(filepath)
-        self.data_values.insert(tk.END, df)
-        # with open(filepath, "r") as input_file:
-        #     text = input_file.read()
-        #     txt_edit.insert(tk.END, text)
+        self.data_values = df
         self.window.title(f"Simple Text Editor - {filepath}")
     
     def rand_test(self):
         self.clear_test()
+        print(self.memory_data().head())
     
     def clear_test(self):
         self.btn_open.grid_forget()
+        print(self.memory_data().head())
 
     def main_screen(self):
         self.screen_label = tk.Label(text="Welcome to the Dominic Number Method Trainer")
         self.btn_open = tk.Button(self.frame, text="Open", command= self.open_file)
-        self.btn_rand_mode = tk.Button(text="Random Mode", command= self.rand_test, width=30)
+        self.btn_rand_mode = tk.Button(text="Random Mode", command= self.gather_number_range, width=30)
         self.btn_order_mode = tk.Button(text="Ordered Mode", command= self.rand_test, width=30)
 
-        self.screen_label.grid(row=0, column=1, sticky="nsew")
+        self.screen_label.grid(row=0, column=2, sticky="nsew")
         self.btn_open.grid(row=0, column=0, sticky="n", padx=5, pady=5)
-        self.btn_rand_mode.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
-        self.btn_order_mode.grid(row=1, column=2, sticky="nsew", padx=5, pady=5)
+        self.btn_rand_mode.grid(row=1, column=2, sticky="nsew", padx=5, pady=5)
+        self.btn_order_mode.grid(row=1, column=3, sticky="nsew", padx=5, pady=5)
+
+    def gather_number_range(self):
+
+        if (self.data_values.empty):
+            messagebox.showinfo(title="No data loaded", message="Please open your data file")
+        else: 
+            self.btn_rand_mode.grid_forget()
+            self.btn_order_mode.grid_forget()
+            self.screen_label.grid_forget()
+
+            label = tk.Label(text="Please select lower range")
+            nxt_button = tk.Button(text="Next")
+
+            label.grid(row=0, column=2, sticky="nsew")
+            nxt_button.grid(row=3, column=2, sticky="nsew")
+            self.lower_range.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
 
     def memory_data(self):
-        return self.data_values.get("1.0", tk.END)
-        
+        return self.data_values
+    
 
 def main():
     window=  tk.Tk()
