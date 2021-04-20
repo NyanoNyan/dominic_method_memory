@@ -30,7 +30,8 @@ class WindowSetUp:
 
         # For game to start
         self.label_number_game = tk.Label()
-        self.next_button = tk.Button(text="Next")
+        self.person_value = tk.Label()
+        self.action_value = tk.Label()
 
         self.data_values = pd.DataFrame()
         # self.txt_edit = tk.Text(self.window)
@@ -104,9 +105,13 @@ class WindowSetUp:
             self.mode_select.change_mode(self.mode)
 
             ## Show the number
-            self.label_number_game["text"] = str(self.mode_select.give_values())
+            self.index_value = self.mode_select.give_values()
+            self.label_number_game["text"] = str(self.index_value)
             self.label_number_game.grid(row=1, column=2, sticky="nsew")
 
+                
+            self.person_value.grid_forget()
+            self.action_value.grid_forget()
             ## Show value and next button after 2 seconds
             self.window.after(2000, self.show_next_button)
 
@@ -122,7 +127,18 @@ class WindowSetUp:
             # self.lower_range.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
 
     def show_next_button(self):
-        self.next_button.grid(row=2, column=2, sticky="nsew")
+
+        person_value = self.data_values.iloc[self.index_value+1, 3]
+        action_value = self.data_values.iloc[self.index_value+1, 4]  
+
+
+        self.person_value["text"] = person_value
+        self.action_value["text"] = action_value
+        self.next_button = tk.Button(text="Next", command=self.start_game)
+
+        self.person_value.grid(row=2, column=2, sticky="nsew")
+        self.action_value.grid(row=3, column=2, sticky="nsew")
+        self.next_button.grid(row=4, column=2, sticky="nsew")
 
     def start_trainer(self):
         pass
