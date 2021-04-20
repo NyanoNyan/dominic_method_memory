@@ -13,9 +13,14 @@ class WindowSetUp:
 
         self.frame = tk.Frame(self.window)
         self.lower_range = tk.Entry(self.window, justify="center")
-        self.ending_range = tk.Entry(self.window)
+        self.upper_range = tk.Entry(self.window, justify="center")
 
         self.frame.grid(row=0, column=0, sticky="nsew")
+
+        # For settings
+        self.label_lower = tk.Label(text="Please enter a lower range:")
+        self.label_upper = tk.Label(text="Please enter the upper range +1:")
+        self.main_menu_btn = tk.Button(text="Main Menu", command= self.main_screen, width=30)
 
         self.data_values = pd.DataFrame()
         # self.txt_edit = tk.Text(self.window)
@@ -36,22 +41,43 @@ class WindowSetUp:
     
     def rand_test(self):
         self.clear_test()
-        print(self.memory_data().head())
+        print(self.show_memory_data().head())
     
     def clear_test(self):
         self.btn_open.grid_forget()
-        print(self.memory_data().head())
+        print(self.show_memory_data().head())
+
 
     def main_screen(self):
+
+        self.hide_settings_widgets()
         self.screen_label = tk.Label(text="Welcome to the Dominic Number Method Trainer")
         self.btn_open = tk.Button(self.frame, text="Open", command= self.open_file)
         self.btn_rand_mode = tk.Button(text="Random Mode", command= self.gather_number_range, width=30)
         self.btn_order_mode = tk.Button(text="Ordered Mode", command= self.rand_test, width=30)
+        self.btn_settings = tk.Button(text="Settings", command= self.settings_menu, width=10)
 
         self.screen_label.grid(row=0, column=2, sticky="nsew")
         self.btn_open.grid(row=0, column=0, sticky="n", padx=5, pady=5)
         self.btn_rand_mode.grid(row=1, column=2, sticky="nsew", padx=5, pady=5)
         self.btn_order_mode.grid(row=1, column=3, sticky="nsew", padx=5, pady=5)
+        self.btn_settings.grid(row=0, column=4, sticky="nsew", padx=5, pady=5)
+
+    def settings_menu(self):
+        # Clear unnecessary buttons
+        self.btn_rand_mode.grid_forget()
+        self.btn_order_mode.grid_forget()
+        self.screen_label.grid_forget()
+
+        # Add in form style to gather lower and upper values
+
+
+        self.label_lower.grid(row=1, column=1, sticky="nswe")
+        self.label_upper.grid(row=2, column=1, sticky="nswe")
+        self.main_menu_btn.grid(row=4, column=2, sticky="nsew")
+
+        self.lower_range.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
+        self.upper_range.grid(row=2, column=2, sticky="nsew", padx=1, pady=1)
 
     def gather_number_range(self):
 
@@ -69,9 +95,16 @@ class WindowSetUp:
             nxt_button.grid(row=3, column=2, sticky="nsew")
             self.lower_range.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
 
-    def memory_data(self):
+    def show_memory_data(self):
         return self.data_values
-    
+
+    def hide_settings_widgets(self):
+        self.label_lower.grid_forget()
+        self.label_upper.grid_forget()
+        self.lower_range.grid_forget()
+        self.upper_range.grid_forget()
+        
+        self.main_menu_btn.grid_forget()
 
 def main():
     window=  tk.Tk()
@@ -108,3 +141,6 @@ if __name__ == "__main__":
 
 
 # window.mainloop()
+
+# https://stackoverflow.com/questions/16115378/tkinter-example-code-for-multiple-windows-why-wont-buttons-load-correctly
+# https://stackoverflow.com/questions/53256356/hide-a-button-in-tkinter
