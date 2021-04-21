@@ -5,7 +5,7 @@
 - Dominic system is a memory technique used to memorize long sequence of numbers.
 
 ## How to use
-- Please open the data_template.csv and fill in your personal person and action data.
+- Please download the data_template.csv file and fill in your personal person and action data.
 - Download the latest installer from releases
 - Open the data_template.csv file using the "Open" button.
 - Pick if you want to train using random or ordered method
