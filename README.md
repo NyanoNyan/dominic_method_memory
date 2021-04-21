@@ -4,6 +4,13 @@
 
 - Dominic system is a memory technique used to memorize long sequence of numbers.
 
+## How to use
+- Please open the data_template.csv and fill in your personal person, action and object (PAO).
+- Download the latest installer from releases
+- Open the data_template.csv file using the "Open" button.
+- Pick if you want to train using random or ordered method
+- You can also pick the range you want to go over by changing it in the settings menu
+
 Reference: https://artofmemory.com/wiki/Dominic_System#:~:text=The%20Dominic%20system%20is%20a%20system%20for%20memorizing%20long%20sequences,to%20remember%20people%20and%20actions.
 
 
