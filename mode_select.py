@@ -39,3 +39,6 @@ class ModeSelect:
     def show_count(self):
         return self.count
     
+    def show_item_list(self):
+        return self.item_list
+    
