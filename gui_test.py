@@ -25,6 +25,7 @@ class WindowSetUp:
         # For settings
         self.label_lower = tk.Label(text="Please enter a lower range:")
         self.label_upper = tk.Label(text="Please enter the upper range +1:")
+        self.button_save_settings = tk.Button(text="Save settings", command=self.save_settings)
         self.lower_range.insert(0, "0")
         self.upper_range.insert(0, "21")
         self.main_menu_btn = tk.Button(text="Main Menu", command= self.main_screen, width=30)
@@ -35,6 +36,8 @@ class WindowSetUp:
         self.label_number_game = tk.Label()
         self.person_value = tk.Label()
         self.action_value = tk.Label()
+
+        self.next_button = tk.Button(text="Next", command= lambda: self.start_game(self.mode))
 
         self.data_values = pd.DataFrame()
 
@@ -82,10 +85,11 @@ class WindowSetUp:
         self.label_number_game.grid_forget()
         self.action_value.grid_forget()
         self.person_value.grid_forget()
+        self.next_button.grid_forget()
 
+        # Reset count for game for normal mode
         self.count_order = 0
         # Add in form style to gather lower and upper values
-
 
         self.label_lower.grid(row=1, column=1, sticky="nswe")
         self.label_upper.grid(row=2, column=1, sticky="nswe")
@@ -93,9 +97,16 @@ class WindowSetUp:
 
         self.lower_range.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
         self.upper_range.grid(row=2, column=2, sticky="nsew", padx=1, pady=1)
+        self.button_save_settings.grid(row=3, column=2, sticky="nsew")
 
         self.mode_select = mode_select.ModeSelect(self.mode, self.lower_range.get(), self.upper_range.get())
-        print(self.lower_range.get())
+    
+
+        # print(self.lower_range.get())
+
+    def save_settings(self):
+        self.lower_range.get()
+        self.upper_range.get()
 
     def start_game(self, event):
 
@@ -135,7 +146,6 @@ class WindowSetUp:
 
         self.person_value["text"] = person_value
         self.action_value["text"] = action_value
-        self.next_button = tk.Button(text="Next", command= lambda: self.start_game(self.mode))
 
         self.person_value.grid(row=2, column=2, sticky="nsew")
         self.action_value.grid(row=3, column=2, sticky="nsew")
@@ -151,6 +161,12 @@ class WindowSetUp:
         self.lower_range.grid_forget()
         self.upper_range.grid_forget()
         self.main_menu_btn.grid_forget()
+        self.button_save_settings.grid_forget()
+
+        self.label_number_game.grid_forget()
+        self.action_value.grid_forget()
+        self.person_value.grid_forget()
+        self.next_button.grid_forget()
     
     def show_range_values(self):
         return self.lower_range.get(), self.upper_range.get()
@@ -166,33 +182,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# window = tk.Tk()
-
-
-# window.title("Dominic Method Memory Tester")
-
-# window.rowconfigure(0, minsize=500, weight=1)
-# window.columnconfigure([1,2], minsize=100, weight=1)
-
-# txt_edit = tk.Text(window)
-# txt_test = tk.Text(window)
-# txt_test.grid(row=0, column=2, sticky="nsew")
-
-
-# fr_buttons = tk.Frame(window)
-# fr_buttons.grid(row=0, column=0, sticky="ns")
-
-# btn_open = tk.Button(fr_buttons, text="Open", command= open_file)
-# btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-
-# btn_open_check = tk.Button(fr_buttons, text="Check", command=rand_test)
-# btn_open_check.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
-
-
-
-# window.mainloop()
-
-# https://stackoverflow.com/questions/16115378/tkinter-example-code-for-multiple-windows-why-wont-buttons-load-correctly
-# https://stackoverflow.com/questions/53256356/hide-a-button-in-tkinter
