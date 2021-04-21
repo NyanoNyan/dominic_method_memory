@@ -10,7 +10,7 @@ class WindowSetUp:
     def __init__(self, window, isRand):
         self.window = window
         self.isRand = False
-        self.mode = ""
+        self.mode = "r"
         self.count_order = 0
         self.window.title("Dominic Method Memory Tester")
         self.window.rowconfigure([0, 1, 2, 3, 4], minsize= 100, weight=1)
@@ -29,6 +29,8 @@ class WindowSetUp:
         self.upper_range.insert(0, "21")
         self.main_menu_btn = tk.Button(text="Main Menu", command= self.main_screen, width=30)
 
+        # For mode select
+        self.mode_select = mode_select.ModeSelect(self.mode, self.lower_range.get(), self.upper_range.get())
         # For game to start
         self.label_number_game = tk.Label()
         self.person_value = tk.Label()
@@ -95,6 +97,7 @@ class WindowSetUp:
         self.lower_range.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
         self.upper_range.grid(row=2, column=2, sticky="nsew", padx=1, pady=1)
 
+        self.mode_select = mode_select.ModeSelect(self.mode, self.lower_range.get(), self.upper_range.get())
         print(self.lower_range.get())
 
     def start_game(self, event):
@@ -170,9 +173,7 @@ class WindowSetUp:
     
     def show_mode(self):
         return self.mode
-    
-    def get_mode_select(self, mode_select):
-        self.mode_select = mode_select
+
 
     def show_range_values(self):
         return self.lower_range.get(), self.upper_range.get()
@@ -190,16 +191,6 @@ def main():
     window=  tk.Tk()
     app = WindowSetUp(window, False)
     app.main_screen()
-
-    # Set up range for the items 00, 01 etc as srings
-    lower = int(app.show_range_values()[0])
-    ending = int(app.show_range_values()[1])
-    item_range = list(range(lower, ending))
-    item_list = list(map(lambda x: putZeros(x), item_range))
-    mode_set = mode_select.ModeSelect(app.show_mode(), item_list)
-
-    app.get_mode_select(mode_set)
-
     window.resizable(False,False)
     window.mainloop()
 
