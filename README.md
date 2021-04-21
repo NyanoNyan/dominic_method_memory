@@ -4,4 +4,4 @@
 
 - Dominic system is a memory technique used to memorize long sequence of numbers.
 
-ref: https://artofmemory.com/wiki/Dominic_System#:~:text=The%20Dominic%20system%20is%20a%20system%20for%20memorizing%20long%20sequences,to%20remember%20people%20and%20actions.
+Reference: https://artofmemory.com/wiki/Dominic_System#:~:text=The%20Dominic%20system%20is%20a%20system%20for%20memorizing%20long%20sequences,to%20remember%20people%20and%20actions.
