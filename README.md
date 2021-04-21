@@ -2,7 +2,7 @@
 
 - Application can be downloaded in release. First version, bugs at the moment.
 
-<img src="img/appliction_pic.jpg" width="650">
+<img src="img/application_pic.JPG" width="650">
 
 - Dominic system is a memory technique used to memorize long sequence of numbers.
 
