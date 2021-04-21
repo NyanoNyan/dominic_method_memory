@@ -37,9 +37,7 @@ class WindowSetUp:
         self.action_value = tk.Label()
 
         self.data_values = pd.DataFrame()
-        # self.txt_edit = tk.Text(self.window)
-        # self.txt_test = tk.Text(self.window)
-        # self.txt_test.grid(row=0, column=2, sticky="nsew")
+
 
     def open_file(self):
         """Open a file for editing."""
@@ -63,7 +61,6 @@ class WindowSetUp:
 
 
     def main_screen(self):
-
         self.hide_settings_widgets()
         self.screen_label = tk.Label(text="Welcome to the Dominic Number Method Trainer")
         self.btn_open = tk.Button(self.frame, text="Open", command= self.open_file)
@@ -124,17 +121,6 @@ class WindowSetUp:
             ## Show value and next button after 2 seconds
             self.window.after(2000, self.show_next_button)
 
-            ## Show the value and button
-
-
-
-            # label = tk.Label(text="Please select lower range")
-            # nxt_button = tk.Button(text="Next")
-
-            # label.grid(row=0, column=2, sticky="nsew")
-            # nxt_button.grid(row=3, column=2, sticky="nsew")
-            # self.lower_range.grid(row=1, column=2, sticky="nsew", padx=1, pady=1)
-
     def show_next_button(self):
 
         if (self.mode == "r"):
@@ -147,8 +133,6 @@ class WindowSetUp:
             action_value = self.data_values.iloc[self.count_order + self.item_count, 4]  
             self.count_order += 1
 
-
-
         self.person_value["text"] = person_value
         self.action_value["text"] = action_value
         self.next_button = tk.Button(text="Next", command= lambda: self.start_game(self.mode))
@@ -157,8 +141,6 @@ class WindowSetUp:
         self.action_value.grid(row=3, column=2, sticky="nsew")
         self.next_button.grid(row=4, column=2, sticky="nsew")
 
-    def start_trainer(self):
-        pass
 
     def show_memory_data(self):
         return self.data_values
@@ -168,22 +150,10 @@ class WindowSetUp:
         self.label_upper.grid_forget()
         self.lower_range.grid_forget()
         self.upper_range.grid_forget()
-
         self.main_menu_btn.grid_forget()
     
-    def show_mode(self):
-        return self.mode
-
-
     def show_range_values(self):
         return self.lower_range.get(), self.upper_range.get()
-
-def putZeros(value):
-
-    if value < 10:
-        return f'0{value}'
-    else:
-        return str(value)
 
 
 def main():
